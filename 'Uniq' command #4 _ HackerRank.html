@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<!-- saved from url=(0116)https://www.hackerrank.com/challenges/text-processing-in-linux-the-uniq-command-4/problem?h_r=next-challenge&h_v=zen -->
+<html lang="en-us" style="--font-family-text:OpenSans, Arial, Helvetica, sans-serif; --font-family-input:SourceCodePro, monaco, Courier, monospace;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style id="react-tooltip">.__react_component_tooltip{border-radius:3px;display:inline-block;font-size:13px;left:-999em;opacity:0;padding:8px 21px;position:fixed;pointer-events:none;transition:opacity 0.3s ease-out;top:-999em;visibility:hidden;z-index:999}.__react_component_tooltip.allow_hover{pointer-events:auto}.__react_component_tooltip:before,.__react_component_tooltip:after{content:"";width:0;height:0;position:absolute}.__react_component_tooltip.show{opacity:0.9;margin-top:0px;margin-left:0px;visibility:visible}.__react_component_tooltip.type-dark{color:#fff;background-color:#222}.__react_component_tooltip.type-dark.place-top:after{border-top-color:#222;border-top-style:solid;border-top-width:6px}.__react_component_tooltip.type-dark.place-bottom:after{border-bottom-color:#222;border-bottom-style:solid;border-bottom-width:6px}.__react_component_tooltip.type-dark.place-left:after{border-left-color:#222;border-left-style:solid;border-left-width:6px}.__react_component_tooltip.type-dark.place-right:after{border-right-color:#222;border-right-style:solid;border-right-width:6px}.__react_component_tooltip.type-dark.border{border:1px solid #fff}.__react_component_tooltip.type-dark.border.place-top:before{border-top:8px solid #fff}.__react_component_tooltip.type-dark.border.place-bottom:before{border-bottom:8px solid #fff}.__react_component_tooltip.type-dark.border.place-left:before{border-left:8px solid #fff}.__react_component_tooltip.type-dark.border.place-right:before{border-right:8px solid #fff}.__react_component_tooltip.type-success{color:#fff;background-color:#8DC572}.__react_component_tooltip.type-success.place-top:after{border-top-color:#8DC572;border-top-style:solid;border-top-width:6px}.__react_component_tooltip.type-success.place-bottom:after{border-bottom-color:#8DC572;border-bottom-style:solid;border-bottom-width:6px}.__react_component_tooltip.type-success.place-left:after{border-left-color:#8DC572;border-left-style:solid;border-left-width:6px}.__react_component_tooltip.type-success.place-right:after{border-right-color:#8DC572;border-right-style:solid;border-right-width:6px}.__react_component_tooltip.type-success.border{border:1px solid #fff}.__react_component_tooltip.type-success.border.place-top:before{border-top:8px solid #fff}.__react_component_tooltip.type-success.border.place-bottom:before{border-bottom:8px solid #fff}.__react_component_tooltip.type-success.border.place-left:before{border-left:8px solid #fff}.__react_component_tooltip.type-success.border.place-right:before{border-right:8px solid #fff}.__react_component_tooltip.type-warning{color:#fff;background-color:#F0AD4E}.__react_component_tooltip.type-warning.place-top:after{border-top-color:#F0AD4E;border-top-style:solid;border-top-width:6px}.__react_component_tooltip.type-warning.place-bottom:after{border-bottom-color:#F0AD4E;border-bottom-style:solid;border-bottom-width:6px}.__react_component_tooltip.type-warning.place-left:after{border-left-color:#F0AD4E;border-left-style:solid;border-left-width:6px}.__react_component_tooltip.type-warning.place-right:after{border-right-color:#F0AD4E;border-right-style:solid;border-right-width:6px}.__react_component_tooltip.type-warning.border{border:1px solid #fff}.__react_component_tooltip.type-warning.border.place-top:before{border-top:8px solid #fff}.__react_component_tooltip.type-warning.border.place-bottom:before{border-bottom:8px solid #fff}.__react_component_tooltip.type-warning.border.place-left:before{border-left:8px solid #fff}.__react_component_tooltip.type-warning.border.place-right:before{border-right:8px solid #fff}.__react_component_tooltip.type-error{color:#fff;background-color:#BE6464}.__react_component_tooltip.type-error.place-top:after{border-top-color:#BE6464;border-top-style:solid;border-top-width:6px}.__react_component_tooltip.type-error.place-bottom:after{border-bottom-color:#BE6464;border-bottom-style:solid;border-bottom-width:6px}.__react_component_tooltip.type-error.place-left:after{border-left-color:#BE6464;border-left-style:solid;border-left-width:6px}.__react_component_tooltip.type-error.place-right:after{border-right-color:#BE6464;border-right-style:solid;border-right-width:6px}.__react_component_tooltip.type-error.border{border:1px solid #fff}.__react_component_tooltip.type-error.border.place-top:before{border-top:8px solid #fff}.__react_component_tooltip.type-error.border.place-bottom:before{border-bottom:8px solid #fff}.__react_component_tooltip.type-error.border.place-left:before{border-left:8px solid #fff}.__react_component_tooltip.type-error.border.place-right:before{border-right:8px solid #fff}.__react_component_tooltip.type-info{color:#fff;background-color:#337AB7}.__react_component_tooltip.type-info.place-top:after{border-top-color:#337AB7;border-top-style:solid;border-top-width:6px}.__react_component_tooltip.type-info.place-bottom:after{border-bottom-color:#337AB7;border-bottom-style:solid;border-bottom-width:6px}.__react_component_tooltip.type-info.place-left:after{border-left-color:#337AB7;border-left-style:solid;border-left-width:6px}.__react_component_tooltip.type-info.place-right:after{border-right-color:#337AB7;border-right-style:solid;border-right-width:6px}.__react_component_tooltip.type-info.border{border:1px solid #fff}.__react_component_tooltip.type-info.border.place-top:before{border-top:8px solid #fff}.__react_component_tooltip.type-info.border.place-bottom:before{border-bottom:8px solid #fff}.__react_component_tooltip.type-info.border.place-left:before{border-left:8px solid #fff}.__react_component_tooltip.type-info.border.place-right:before{border-right:8px solid #fff}.__react_component_tooltip.type-light{color:#222;background-color:#fff}.__react_component_tooltip.type-light.place-top:after{border-top-color:#fff;border-top-style:solid;border-top-width:6px}.__react_component_tooltip.type-light.place-bottom:after{border-bottom-color:#fff;border-bottom-style:solid;border-bottom-width:6px}.__react_component_tooltip.type-light.place-left:after{border-left-color:#fff;border-left-style:solid;border-left-width:6px}.__react_component_tooltip.type-light.place-right:after{border-right-color:#fff;border-right-style:solid;border-right-width:6px}.__react_component_tooltip.type-light.border{border:1px solid #222}.__react_component_tooltip.type-light.border.place-top:before{border-top:8px solid #222}.__react_component_tooltip.type-light.border.place-bottom:before{border-bottom:8px solid #222}.__react_component_tooltip.type-light.border.place-left:before{border-left:8px solid #222}.__react_component_tooltip.type-light.border.place-right:before{border-right:8px solid #222}.__react_component_tooltip.place-top{margin-top:-10px}.__react_component_tooltip.place-top:before{border-left:10px solid transparent;border-right:10px solid transparent;bottom:-8px;left:50%;margin-left:-10px}.__react_component_tooltip.place-top:after{border-left:8px solid transparent;border-right:8px solid transparent;bottom:-6px;left:50%;margin-left:-8px}.__react_component_tooltip.place-bottom{margin-top:10px}.__react_component_tooltip.place-bottom:before{border-left:10px solid transparent;border-right:10px solid transparent;top:-8px;left:50%;margin-left:-10px}.__react_component_tooltip.place-bottom:after{border-left:8px solid transparent;border-right:8px solid transparent;top:-6px;left:50%;margin-left:-8px}.__react_component_tooltip.place-left{margin-left:-10px}.__react_component_tooltip.place-left:before{border-top:6px solid transparent;border-bottom:6px solid transparent;right:-8px;top:50%;margin-top:-5px}.__react_component_tooltip.place-left:after{border-top:5px solid transparent;border-bottom:5px solid transparent;right:-6px;top:50%;margin-top:-4px}.__react_component_tooltip.place-right{margin-left:10px}.__react_component_tooltip.place-right:before{border-top:6px solid transparent;border-bottom:6px solid transparent;left:-8px;top:50%;margin-top:-5px}.__react_component_tooltip.place-right:after{border-top:5px solid transparent;border-bottom:5px solid transparent;left:-6px;top:50%;margin-top:-4px}.__react_component_tooltip .multi-line{display:block;padding:2px 0px;text-align:center}</style>
+  
+  
+  <meta property="og:image" id="meta-og-image" content="https://hrcdn.net/og/default.jpg"><meta property="og:site_name" id="meta-og-site" content="HackerRank"><meta property="og:type" id="meta-og-type" content="website"><meta property="article:author" content="https://www.facebook.com/hackerrank"><meta name="twitter:card" id="meta-twitter-card" content="summary"><meta name="twitter:site" id="meta-twitter-site" content="@hackerrank"><meta property="fb:app_id" id="meta-fb-id" content="347499128655783"><meta content="authenticity_token" name="csrf-param" id="csrf-param"><meta content="Iisw0xuW4d8zeBshHrrqzrLyhjgRzIC5ASUptT7Qz1hTlxpvX7ut1kfd5bkeHAGvGbnjjjTBA4kIm7d8IXKmVw==" name="csrf-token" id="csrf-token">
+  <script type="text/javascript" async="" src="./&#39;Uniq&#39; command #4 _ HackerRank_files/mixpanel-2-latest.min.js"></script><script type="text/javascript" async="" src="./&#39;Uniq&#39; command #4 _ HackerRank_files/ga.js"></script><script async="" src="./&#39;Uniq&#39; command #4 _ HackerRank_files/gtm.js"></script><script>/*!
+ * JavaScript Cookie v2.1.3
+ * https://github.com/js-cookie/js-cookie
+ *
+ * Copyright 2006, 2015 Klaus Hartl & Fagner Brack
+ * Released under the MIT license
+ */
+;(function (factory) {
+	var registeredInModuleLoader = false;
+	if (typeof define === 'function' && define.amd) {
+		define(factory);
+		registeredInModuleLoader = true;
+	}
+	if (typeof exports === 'object') {
+		module.exports = factory();
+		registeredInModuleLoader = true;
+	}
+	if (!registeredInModuleLoader) {
+		var OldCookies = window.Cookies;
+		var api = window.Cookies = factory();
+		api.noConflict = function () {
+			window.Cookies = OldCookies;
+			return api;
+		};
+	}
+}(function () {
+	function extend () {
+		var i = 0;
+		var result = {};
+		for (; i < arguments.length; i++) {
+			var attributes = arguments[ i ];
+			for (var key in attributes) {
+				result[key] = attributes[key];
+			}
+		}
+		return result;
+	}
+
+	function init (converter) {
+		function api (key, value, attributes) {
+			var result;
+			if (typeof document === 'undefined') {
+				return;
+			}
+
+			// Write
+
+			if (arguments.length > 1) {
+				attributes = extend({
+					path: '/'
+				}, api.defaults, attributes);
+
+				if (typeof attributes.expires === 'number') {
+					var expires = new Date();
+					expires.setMilliseconds(expires.getMilliseconds() + attributes.expires * 864e+5);
+					attributes.expires = expires;
+				}
+
+				try {
+					result = JSON.stringify(value);
+					if (/^[\{\[]/.test(result)) {
+						value = result;
+					}
+				} catch (e) {}
+
+				if (!converter.write) {
+					value = encodeURIComponent(String(value))
+						.replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g, decodeURIComponent);
+				} else {
+					value = converter.write(value, key);
+				}
+
+				key = encodeURIComponent(String(key));
+				key = key.replace(/%(23|24|26|2B|5E|60|7C)/g, decodeURIComponent);
+				key = key.replace(/[\(\)]/g, escape);
+
+				return (document.cookie = [
+					key, '=', value,
+					attributes.expires ? '; expires=' + attributes.expires.toUTCString() : '', // use expires attribute, max-age is not supported by IE
+					attributes.path ? '; path=' + attributes.path : '',
+					attributes.domain ? '; domain=' + attributes.domain : '',
+					attributes.secure ? '; secure' : ''
+				].join(''));
+			}
+
+			// Read
+
+			if (!key) {
+				result = {};
+			}
+
+			// To prevent the for loop in the first place assign an empty array
+			// in case there are no cookies at all. Also prevents odd result when
+			// calling "get()"
+			var cookies = document.cookie ? document.cookie.split('; ') : [];
+			var rdecode = /(%[0-9A-Z]{2})+/g;
+			var i = 0;
+
+			for (; i < cookies.length; i++) {
+				var parts = cookies[i].split('=');
+				var cookie = parts.slice(1).join('=');
+
+				if (cookie.charAt(0) === '"') {
+					cookie = cookie.slice(1, -1);
+				}
+
+				try {
+					var name = parts[0].replace(rdecode, decodeURIComponent);
+					cookie = converter.read ?
+						converter.read(cookie, name) : converter(cookie, name) ||
+						cookie.replace(rdecode, decodeURIComponent);
+
+					if (this.json) {
+						try {
+							cookie = JSON.parse(cookie);
+						} catch (e) {}
+					}
+
+					if (key === name) {
+						result = cookie;
+						break;
+					}
+
+					if (!key) {
+						result[name] = cookie;
+					}
+				} catch (e) {}
+			}
+
+			return result;
+		}
+
+		api.set = api;
+		api.get = function (key) {
+			return api.call(api, key);
+		};
+		api.getJSON = function () {
+			return api.apply({
+				json: true
+			}, [].slice.call(arguments));
+		};
+		api.defaults = {};
+
+		api.remove = function (key, attributes) {
+			api(key, '', extend(attributes, {
+				expires: -1
+			}));
+		};
+
+		api.withConverter = init;
+
+		return api;
+	}
+
+	return init(function () {});
+}));
+</script>
+  <script>
+    window.BACKEND_ENDPOINT = 'https://www.hackerrank.com/';
+    window.MANIFEST_VERSION = '912bdc6c48';
+  </script>
+
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="https://hrcdn.net/fcore/assets/favicon-62bdd46faf.png">
+
+  <!-- Prefetch dns on production -->
+  
+    <link rel="dns-prefetch" href="https://hrcdn.net/">
+    <link rel="dns-prefetch" href="https://d3keuzeb2crhkn.cloudfront.net/">
+    <link rel="dns-prefetch" href="https://notifications.hackerrank.com/">
+    <link rel="dns-prefetch" href="https://api.mixpanel.com/">
+    <link rel="dns-prefetch" href="https://metrics.hackerrank.com/">
+    <link rel="preconnect" href="https://sentry.io/">
+    <link rel="dns-prefetch" href="https://sentry.io/">
+  
+
+  
+    <link href="./&#39;Uniq&#39; command #4 _ HackerRank_files/hackerrank_libraries-6d1eda62f2.css" media="all" rel="stylesheet"><link rel="stylesheet" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/hackerrank_libraries-6d1eda62f2.css">
+
+    <link href="./&#39;Uniq&#39; command #4 _ HackerRank_files/hackerrank-core-c7aaf0e41c.css" media="all" rel="stylesheet">
+
+    
+      <link href="./&#39;Uniq&#39; command #4 _ HackerRank_files/dashboard-f9cd1b5147.css" media="all" rel="stylesheet">
+    
+  
+
+
+  
+
+  <link rel="stylesheet" type="text/css" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/hackerrank_r_app-354b6bdab545f68fee4a.css">
+  
+    <link rel="stylesheet" type="text/css" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/vendors_hackerrank_r_community_hackerrank_r_testoverview-ee54e656ac36cde82092.css">
+  
+    <link rel="stylesheet" type="text/css" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/vendors_hackerrank_r_community_hackerrank_r_work-d25b63a44a8f0d132186.css">
+  
+    <link rel="stylesheet" type="text/css" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/hackerrank_r_community-8ce189c9c84a3828989e.css">
+  
+    <link rel="stylesheet" type="text/css" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/hackerrank_r_contest-4c50bf9de2604f3d5fde.css">
+  
+
+  <!-- Prefetch / preload assets on production -->
+  
+
+    <!-- preload scripts required on the same page -->
+    <link rel="preload" as="script" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/hackerrank_r_vendor-4dd797fb49.js">
+    <link rel="preload" as="script" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/hackerrank_r_app-354b6bdab545f68fee4a.js">
+    <link rel="preload" as="script" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/runtime-b6bab433055322580beb.js">
+
+    
+      <link rel="preload" as="script" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/vendors_hackerrank_r_community_hackerrank_r_sourcing_company_hackerrank_r_testinsights_hackerrank_r__a3786619-e369da1e8974e39bda50.js">
+    
+      <link rel="preload" as="script" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/vendors_hackerrank_r_community_hackerrank_r_work_lsp_client-47a0962b033ae6f57c50.js">
+    
+      <link rel="preload" as="script" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/vendors_hackerrank_r_community_hackerrank_r_testoverview-ee54e656ac36cde82092.js">
+    
+      <link rel="preload" as="script" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/vendors_hackerrank_r_community_hackerrank_r_work-d25b63a44a8f0d132186.js">
+    
+      <link rel="preload" as="script" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/hackerrank_r_community-8ce189c9c84a3828989e.js">
+    
+      <link rel="preload" as="script" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/hackerrank_r_contest-4c50bf9de2604f3d5fde.js">
+    
+    <!-- preload scripts end -->
+
+    <!-- Prefetch old css files -->
+    <link rel="prefetch" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/hackerrank-core-c7aaf0e41c.css">
+    <link rel="prefetch" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/hackerrank_libraries-6d1eda62f2.css">
+
+    
+      <link rel="prefetch" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/dashboard-f9cd1b5147.css">
+    
+    <!-- Prefetch old css files end -->
+
+  
+
+  <!-- Load promise polyfill for the non-believers -->
+  <script>
+    window.Promise || document.write('<script src="https://hrcdn.net/fcore/assets/polyfill-d05a380d50.min.js" type="text\/javascript"><\/script>');
+  </script>
+  <!-- Added for GTM -->
+  <!-- GTM setup -->
+
+<script>
+  dataLayer = [];
+</script>
+
+<!-- Google Tag Manager #1 -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer', 'GTM-5FXW96J');</script>
+<!-- End Google Tag Manager 1 -->
+
+
+
+<script charset="utf-8" src="./&#39;Uniq&#39; command #4 _ HackerRank_files/vendors_hackerrank_r_community_hackerrank_r_sourcing_company_hackerrank_r_testinsights_hackerrank_r__a3786619-e369da1e8974e39bda50.js"></script><script charset="utf-8" src="./&#39;Uniq&#39; command #4 _ HackerRank_files/vendors_hackerrank_r_community_hackerrank_r_work_lsp_client-47a0962b033ae6f57c50.js"></script><script charset="utf-8" src="./&#39;Uniq&#39; command #4 _ HackerRank_files/vendors_hackerrank_r_community_hackerrank_r_work-d25b63a44a8f0d132186.js"></script><script charset="utf-8" src="./&#39;Uniq&#39; command #4 _ HackerRank_files/vendors_hackerrank_r_community_hackerrank_r_testoverview-ee54e656ac36cde82092.js"></script><script charset="utf-8" src="./&#39;Uniq&#39; command #4 _ HackerRank_files/hackerrank_r_community-8ce189c9c84a3828989e.js"></script><link rel="prefetch" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/hackerrank_r_challenge_list-180f140138bb66d80bc9.js"><link rel="prefetch" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/vendors_hackerrank_r_challenge_list_hackerrank_r_challenge_list_v2_hackerrank_r_interview_hackerrank_1976138a-a5ca0a1d7331913ab152.js"><link rel="prefetch" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/vendors_hackerrank_r_challenge_list_hackerrank_r_challenge_list_v2_hackerrank_r_interview_hackerrank_14aa502a-f9e5bcabc62f8ce06462.js"><link rel="prefetch" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/hackerrank_r_challenge_list_hackerrank_r_challenge_list_v2_hackerrank_r_interview-f26fb91d8c6a98bbd6e6.js"><link rel="prefetch" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/hackerrank_r_challenge_list_hackerrank_r_challenge_list_v2_hackerrank_r_interview-f26fb91d8c6a98bbd6e6.css"><link rel="prefetch" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/hackerrank_r_challenge_list-180f140138bb66d80bc9.css"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/hackerrank_r_challenge_list_v2-fffc71c73bc522af8a5e.js"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/hackerrank_r_challenge_list_v2-fffc71c73bc522af8a5e.css"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/hackerrank_r_forum-d9129eb0df57ad319c17.js"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/vendors~hackerrank_r_code_snippets~hackerrank_r_forum-1ea1ba41ee2825e549d1.js"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/hackerrank_r_forum-d9129eb0df57ad319c17.css"><link rel="prefetch" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/hackerrank_r_challenge-60a22addc7840876f987.js"><link rel="prefetch" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/vendors_custominput_hackerrank_r_challenge_hackerrank_r_code_snippets_hackerrank_r_onboarding-47b0b0f3ae36cc3d4029.js"><link rel="prefetch" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/vendors_hackerrank_r_challenge_hackerrank_r_code_snippets_hackerrank_r_onboarding-016b97c5ff315df19646.js"><link rel="prefetch" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/vendors_hackerrank_r_challenge_hackerrank_r_onboarding-2eeff87210e2d12c1018.js"><link rel="prefetch" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/vendors_hackerrank_r_challenge-42d75f7581845926ea5a.js"><link rel="prefetch" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/vendors_custominput_hackerrank_r_challenge_hackerrank_r_code_snippets_hackerrank_r_onboarding-47b0b0f3ae36cc3d4029.css"><link rel="prefetch" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/vendors_hackerrank_r_challenge_hackerrank_r_code_snippets_hackerrank_r_onboarding-016b97c5ff315df19646.css"><link rel="prefetch" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/vendors_hackerrank_r_challenge-42d75f7581845926ea5a.css"><link rel="prefetch" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/hackerrank_r_challenge-60a22addc7840876f987.css"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/hackerrank_r_leaderboardv2-70d28bc1dfa25923d10d.js"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/hackerrank_r_leaderboard~hackerrank_r_leaderboardv2-d62a456adb56f87ececd.js"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/hackerrank_r_leaderboard~hackerrank_r_leaderboardv2-d62a456adb56f87ececd.css"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/hackerrank_r_leaderboardv2-70d28bc1dfa25923d10d.css"><link rel="prefetch" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/hackerrank_r_contest-4c50bf9de2604f3d5fde.css"><link rel="prefetch" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/hackerrank_r_dashboard-a7a5db5d2641cbd567c2.js"><link rel="prefetch" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/vendors_hackerrank_r_dashboard_hackerrank_r_work-190a40bab09dcb8a21aa.js"><link rel="prefetch" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/hackerrank_r_dashboard-a7a5db5d2641cbd567c2.css"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/hackerrank_r_leaderboard-068cec2079f66bdef938.js"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/vendors~hackerrank_r_leaderboard-503e634ef7be61c5a376.js"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/vendors~hackerrank_r_leaderboard-503e634ef7be61c5a376.css"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/hackerrank_r_leaderboard-068cec2079f66bdef938.css"><style>
+html.scroll-hidden,html.scroll-hidden body{
+  overflow: hidden;
+  height:100vh;
+}
+html.scroll-hidden.pad-adjustment body{
+    padding-right : 15px;
+}
+html.scroll-hidden.pad-adjustment .fixed-elm{
+    padding-right : 15px;
+}</style><link rel="prefetch" href="https://hrcdn.net/fcore/assets/hackerrank_r_company_header-6f24eb90667eff13c93b.js"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/hackerrank_r_company_header-6f24eb90667eff13c93b.css"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/hackerrank_r_jobs-9a9cb20819221cdecfcf.js"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/vendors~hackerrank_r_jobs~hackerrank_r_testinvite~hackerrank_r_testsettings-affb163167eed3042aa0.js"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/vendors~hackerrank_r_jobs-20c8629d367530ed3712.js"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/vendors~hackerrank_r_jobs-20c8629d367530ed3712.css"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/hackerrank_r_jobs-9a9cb20819221cdecfcf.css"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/hackerrank_r_profile_v2-9ba91939a1ea41be6b52.js"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/vendors~hackerrank_r_profile_v2-7e4129bcc970599fbde5.js"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/vendors~hackerrank_r_profile_v2-7e4129bcc970599fbde5.css"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/hackerrank_r_profile_v2-9ba91939a1ea41be6b52.css"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/hackerrank_r_calendar-4583fd5c0c7e4bb9b578.js"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/vendors~hackerrank_r_calendar-5db275a275272016cc45.js"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/hackerrank_r_calendar-4583fd5c0c7e4bb9b578.css"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/hackerrank_r_code_snippets-7d76a843a176f6cd9e66.js"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/hackerrank_r_code_snippets~hackerrank_r_onboarding-c2172ef7a5fd99b7352d.js"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/hackerrank_r_code_snippets~hackerrank_r_onboarding-c2172ef7a5fd99b7352d.css"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/hackerrank_r_code_snippets-7d76a843a176f6cd9e66.css"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/hackerrank_r_onboarding-1d5cc0714853d05bb765.js"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/hackerrank_r_onboarding-1d5cc0714853d05bb765.css"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/vendors~hackerrank_r_charts-7a3234f0c728d5944dce.js"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/vendors~hackerrank_r_charts-7a3234f0c728d5944dce.css"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/hackerrank_r_scoring-6dc12a923cea90dd55cb.js"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/hackerrank_r_scoring-6dc12a923cea90dd55cb.css"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/hackerrank_r_interview-fd319f946973919bdc6a.js"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/vendors~hackerrank_r_interview-8d9da1249968e1b6bb7f.js"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/vendors~hackerrank_r_interview-8d9da1249968e1b6bb7f.css"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/hackerrank_r_interview-fd319f946973919bdc6a.css"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/hackerrank_r_auth-9a0b68e0ceb5b751b055.js"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/hackerrank_r_auth-9a0b68e0ceb5b751b055.css"><link rel="prefetch" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/hackerrank_r_krackjack-52916995e4e11ffc069d.js"><link rel="prefetch" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/vendors_hackerrank_r_krackjack-a81b69becc386ddc0957.js"><link rel="prefetch" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/vendors_hackerrank_r_krackjack-a81b69becc386ddc0957.css"><script charset="utf-8" src="./&#39;Uniq&#39; command #4 _ HackerRank_files/hackerrank_r_contest-4c50bf9de2604f3d5fde.js"></script><script charset="utf-8" src="./&#39;Uniq&#39; command #4 _ HackerRank_files/vendors_hackerrank_r_dashboard_hackerrank_r_work-190a40bab09dcb8a21aa.js"></script><link rel="stylesheet" type="text/css" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/hackerrank_r_dashboard-a7a5db5d2641cbd567c2.css"><script charset="utf-8" src="./&#39;Uniq&#39; command #4 _ HackerRank_files/hackerrank_r_dashboard-a7a5db5d2641cbd567c2.js"></script><script charset="utf-8" src="./&#39;Uniq&#39; command #4 _ HackerRank_files/vendors_hackerrank_r_challenge_list_hackerrank_r_challenge_list_v2_hackerrank_r_interview_hackerrank_1976138a-a5ca0a1d7331913ab152.js"></script><script charset="utf-8" src="./&#39;Uniq&#39; command #4 _ HackerRank_files/vendors_hackerrank_r_challenge_list_hackerrank_r_challenge_list_v2_hackerrank_r_interview_hackerrank_14aa502a-f9e5bcabc62f8ce06462.js"></script><link rel="stylesheet" type="text/css" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/hackerrank_r_challenge_list_hackerrank_r_challenge_list_v2_hackerrank_r_interview-f26fb91d8c6a98bbd6e6.css"><script charset="utf-8" src="./&#39;Uniq&#39; command #4 _ HackerRank_files/hackerrank_r_challenge_list_hackerrank_r_challenge_list_v2_hackerrank_r_interview-f26fb91d8c6a98bbd6e6.js"></script><link rel="stylesheet" type="text/css" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/hackerrank_r_challenge_list-180f140138bb66d80bc9.css"><script charset="utf-8" src="./&#39;Uniq&#39; command #4 _ HackerRank_files/hackerrank_r_challenge_list-180f140138bb66d80bc9.js"></script><link rel="prefetch" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/vendors_hackerrank_r_intersection_observer-261bab9b37d548815d15.js"><script charset="utf-8" src="./&#39;Uniq&#39; command #4 _ HackerRank_files/vendors_hackerrank_r_intersection_observer-261bab9b37d548815d15.js"></script><link rel="stylesheet" type="text/css" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/vendors_custominput_hackerrank_r_challenge_hackerrank_r_code_snippets_hackerrank_r_onboarding-47b0b0f3ae36cc3d4029.css"><script charset="utf-8" src="./&#39;Uniq&#39; command #4 _ HackerRank_files/vendors_custominput_hackerrank_r_challenge_hackerrank_r_code_snippets_hackerrank_r_onboarding-47b0b0f3ae36cc3d4029.js"></script><link rel="stylesheet" type="text/css" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/vendors_hackerrank_r_challenge_hackerrank_r_code_snippets_hackerrank_r_onboarding-016b97c5ff315df19646.css"><script charset="utf-8" src="./&#39;Uniq&#39; command #4 _ HackerRank_files/vendors_hackerrank_r_challenge_hackerrank_r_code_snippets_hackerrank_r_onboarding-016b97c5ff315df19646.js"></script><script charset="utf-8" src="./&#39;Uniq&#39; command #4 _ HackerRank_files/vendors_hackerrank_r_challenge_hackerrank_r_onboarding-2eeff87210e2d12c1018.js"></script><link rel="stylesheet" type="text/css" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/vendors_hackerrank_r_challenge-42d75f7581845926ea5a.css"><script charset="utf-8" src="./&#39;Uniq&#39; command #4 _ HackerRank_files/vendors_hackerrank_r_challenge-42d75f7581845926ea5a.js"></script><link rel="stylesheet" type="text/css" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/hackerrank_r_challenge-60a22addc7840876f987.css"><script charset="utf-8" src="./&#39;Uniq&#39; command #4 _ HackerRank_files/hackerrank_r_challenge-60a22addc7840876f987.js"></script><link rel="prefetch" href="https://hrcdn.net/fcore/assets/hackerrank_r_codeshell_lib-35e615c4c2dabe714208.js"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/vendors~hackerrank_r_codeshell_lib~hackerrank_r_teams-45f8617be1646e4324de.js"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/vendors~hackerrank_r_codeshell_lib-a3674bc0c8085fcac70c.js"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/codeshell_editor_theme_m-8f2f1445fefa88d73a8f.js"><link rel="prefetch" href="https://hrcdn.net/fcore/assets/codeshell_editor_theme_m-8f2f1445fefa88d73a8f.css"><link rel="stylesheet" type="text/css" href="./&#39;Uniq&#39; command #4 _ HackerRank_files/vendors_hackerrank_r_krackjack-a81b69becc386ddc0957.css"><script charset="utf-8" src="./&#39;Uniq&#39; command #4 _ HackerRank_files/vendors_hackerrank_r_krackjack-a81b69becc386ddc0957.js"></script><script charset="utf-8" src="./&#39;Uniq&#39; command #4 _ HackerRank_files/hackerrank_r_krackjack-52916995e4e11ffc069d.js"></script><style type="text/css" media="screen" class="monaco-colors">.monaco-editor .accessibilityHelpWidget { background-color: #efeff2; }
+.monaco-editor .accessibilityHelpWidget { box-shadow: 0 2px 8px #a8a8a8; }
+.monaco-editor, .monaco-editor-background, .monaco-editor .inputarea.ime-input { background-color: #fffffe; }
+.monaco-editor, .monaco-editor .inputarea.ime-input { color: #000000; }
+.monaco-editor .margin { background-color: #fffffe; }
+.monaco-editor .rangeHighlight { background-color: rgba(253, 255, 0, 0.2); }
+.vs-whitespace { color: rgba(51, 51, 51, 0.2) !important; }
+.monaco-editor .bracket-match { background-color: rgba(0, 100, 0, 0.1); }
+.monaco-editor .bracket-match { border: 1px solid #b9b9b9; }
+.monaco-editor .monaco-editor-overlaymessage .anchor { border-top-color: #007acc; }
+.monaco-editor .monaco-editor-overlaymessage .message { border: 1px solid #007acc; }
+.monaco-editor .monaco-editor-overlaymessage .message { background-color: #d6ecf2; }
+.monaco-editor .codelens-decoration { color: #999999; }
+.monaco-editor .codelens-decoration > a:hover { color: #0000ff !important; }
+.monaco-editor .findMatch { background-color: rgba(234, 92, 0, 0.33); }
+.monaco-editor .currentFindMatch { background-color: #a8ac94; }
+.monaco-editor .findScope { background-color: rgba(180, 180, 180, 0.3); }
+.monaco-editor .find-widget { background-color: #efeff2; }
+.monaco-editor .find-widget { box-shadow: 0 2px 8px #a8a8a8; }
+.monaco-editor .find-widget.no-results .matchesCount { color: #a1260d; }
+.monaco-editor .find-widget .monaco-sash { background-color: #c8c8c8; width: 3px !important; margin-left: -4px;}
+.monaco-editor .findOptionsWidget { background-color: #efeff2; }
+.monaco-editor .findOptionsWidget { box-shadow: 0 2px 8px #a8a8a8; }
+.monaco-editor .line-numbers { color: #237893; }
+.monaco-editor .current-line ~ .line-numbers { color: #0b216f; }
+.monaco-editor .view-overlays .current-line { background-color: #eaf2fe; }
+.monaco-editor .margin-view-overlays .current-line-margin { background-color: #eaf2fe; border: none; }
+.monaco-editor .lines-content .cigr { box-shadow: 1px 0 0 0 #d3d3d3 inset; }
+.monaco-editor .lines-content .cigra { box-shadow: 1px 0 0 0 #939393 inset; }
+.monaco-editor .view-ruler { box-shadow: 1px 0 0 0 #d3d3d3 inset; }
+.monaco-editor .scroll-decoration { box-shadow: #dddddd 0 6px 6px -6px inset; }
+.monaco-editor .focused .selected-text { background-color: #add6ff; }
+.monaco-editor .selected-text { background-color: #e5ebf1; }
+.monaco-editor .cursor { background-color: #000000; border-color: #000000; color: #ffffff; }
+.monaco-editor .minimap-slider, .monaco-editor .minimap-slider .minimap-slider-horizontal { background: rgba(100, 100, 100, 0.2); }
+.monaco-editor .minimap-slider:hover, .monaco-editor .minimap-slider:hover .minimap-slider-horizontal { background: rgba(100, 100, 100, 0.35); }
+.monaco-editor .minimap-slider.active, .monaco-editor .minimap-slider.active .minimap-slider-horizontal { background: rgba(0, 0, 0, 0.3); }
+.monaco-editor .minimap-shadow-visible { box-shadow: #dddddd -6px 0 6px -6px inset; }
+.monaco-editor .squiggly-error { background: url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%206%203'%20enable-background%3D'new%200%200%206%203'%20height%3D'3'%20width%3D'6'%3E%3Cg%20fill%3D'%23d60a0a'%3E%3Cpolygon%20points%3D'5.5%2C0%202.5%2C3%201.1%2C3%204.1%2C0'%2F%3E%3Cpolygon%20points%3D'4%2C0%206%2C2%206%2C0.6%205.4%2C0'%2F%3E%3Cpolygon%20points%3D'0%2C2%201%2C3%202.4%2C3%200%2C0.6'%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") repeat-x bottom left; }
+.monaco-editor .squiggly-warning { background: url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%206%203'%20enable-background%3D'new%200%200%206%203'%20height%3D'3'%20width%3D'6'%3E%3Cg%20fill%3D'%23117711'%3E%3Cpolygon%20points%3D'5.5%2C0%202.5%2C3%201.1%2C3%204.1%2C0'%2F%3E%3Cpolygon%20points%3D'4%2C0%206%2C2%206%2C0.6%205.4%2C0'%2F%3E%3Cpolygon%20points%3D'0%2C2%201%2C3%202.4%2C3%200%2C0.6'%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") repeat-x bottom left; }
+.monaco-editor .squiggly-info { background: url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%206%203'%20enable-background%3D'new%200%200%206%203'%20height%3D'3'%20width%3D'6'%3E%3Cg%20fill%3D'%23008000'%3E%3Cpolygon%20points%3D'5.5%2C0%202.5%2C3%201.1%2C3%204.1%2C0'%2F%3E%3Cpolygon%20points%3D'4%2C0%206%2C2%206%2C0.6%205.4%2C0'%2F%3E%3Cpolygon%20points%3D'0%2C2%201%2C3%202.4%2C3%200%2C0.6'%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") repeat-x bottom left; }
+.monaco-editor .squiggly-hint { background: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%223%22%20width%3D%2212%22%3E%3Cg%20fill%3D%22%236c6c6c%22%3E%3Ccircle%20cx%3D%221%22%20cy%3D%221%22%20r%3D%221%22%2F%3E%3Ccircle%20cx%3D%225%22%20cy%3D%221%22%20r%3D%221%22%2F%3E%3Ccircle%20cx%3D%229%22%20cy%3D%221%22%20r%3D%221%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") no-repeat bottom left; }
+.showUnused .monaco-editor .squiggly-inline-unnecessary { opacity: 0.467; will-change: opacity; }
+.monaco-editor .reference-zone-widget .ref-tree .referenceMatch { background-color: rgba(234, 92, 0, 0.3); }
+.monaco-editor .reference-zone-widget .preview .reference-decoration { background-color: rgba(245, 216, 2, 0.87); }
+.monaco-editor .reference-zone-widget .ref-tree { background-color: #f3f3f3; }
+.monaco-editor .reference-zone-widget .ref-tree { color: #646465; }
+.monaco-editor .reference-zone-widget .ref-tree .reference-file { color: #1e1e1e; }
+.monaco-editor .reference-zone-widget .ref-tree .monaco-tree.focused .monaco-tree-rows > .monaco-tree-row.selected:not(.highlighted) { background-color: rgba(51, 153, 255, 0.2); }
+.monaco-editor .reference-zone-widget .ref-tree .monaco-tree.focused .monaco-tree-rows > .monaco-tree-row.selected:not(.highlighted) { color: #6c6c6c !important; }
+.monaco-editor .reference-zone-widget .preview .monaco-editor .monaco-editor-background,.monaco-editor .reference-zone-widget .preview .monaco-editor .inputarea.ime-input {	background-color: #f2f8fc;}
+.monaco-editor .reference-zone-widget .preview .monaco-editor .margin {	background-color: #f2f8fc;}
+.monaco-editor .goto-definition-link { color: #0000ff !important; }
+.monaco-editor .hoverHighlight { background-color: rgba(173, 214, 255, 0.15); }
+.monaco-editor .monaco-editor-hover { background-color: #efeff2; }
+.monaco-editor .monaco-editor-hover { border: 1px solid #c8c8c8; }
+.monaco-editor .monaco-editor-hover .hover-row:not(:first-child):not(:empty) { border-top: 1px solid rgba(200, 200, 200, 0.5); }
+.monaco-editor .monaco-editor-hover a { color: #006ab1; }
+.monaco-editor .monaco-editor-hover code { background-color: rgba(220, 220, 220, 0.4); }
+.monaco-editor.vs .valueSetReplacement { outline: solid 2px #b9b9b9; }
+.monaco-editor .tokens-inspect-widget { border: 1px solid #c8c8c8; }
+.monaco-editor .tokens-inspect-widget .tokens-inspect-separator { background-color: #c8c8c8; }
+.monaco-editor .tokens-inspect-widget { background-color: #efeff2; }
+.monaco-editor .detected-link-active { color: #0000ff !important; }
+.monaco-editor .parameter-hints-widget { border: 1px solid #c8c8c8; }
+.monaco-editor .parameter-hints-widget.multiple .body { border-left: 1px solid rgba(200, 200, 200, 0.5); }
+.monaco-editor .parameter-hints-widget .signature.has-docs { border-bottom: 1px solid rgba(200, 200, 200, 0.5); }
+.monaco-editor .parameter-hints-widget { background-color: #efeff2; }
+.monaco-editor .parameter-hints-widget a { color: #006ab1; }
+.monaco-editor .parameter-hints-widget code { background-color: rgba(220, 220, 220, 0.4); }
+.monaco-editor .suggest-widget .monaco-list .monaco-list-row .monaco-highlighted-label .highlight { color: #007acc; }
+.monaco-editor .suggest-widget { color: #000000; }
+.monaco-editor .suggest-widget a { color: #006ab1; }
+.monaco-editor .suggest-widget code { background-color: rgba(220, 220, 220, 0.4); }
+.monaco-editor .focused .selectionHighlight { background-color: rgba(173, 214, 255, 0.3); }
+.monaco-editor .selectionHighlight { background-color: rgba(173, 214, 255, 0.15); }
+.monaco-editor .wordHighlight { background-color: rgba(87, 87, 87, 0.25); }
+.monaco-editor .wordHighlightStrong { background-color: rgba(14, 99, 156, 0.25); }
+.monaco-diff-editor .diff-review-line-number { color: #237893; }
+.monaco-diff-editor .diff-review-shadow { box-shadow: #dddddd 0 -6px 6px -6px inset; }
+.monaco-editor .line-insert, .monaco-editor .char-insert { background-color: rgba(155, 185, 85, 0.2); }
+.monaco-diff-editor .line-insert, .monaco-diff-editor .char-insert { background-color: rgba(155, 185, 85, 0.2); }
+.monaco-editor .inline-added-margin-view-zone { background-color: rgba(155, 185, 85, 0.2); }
+.monaco-editor .line-delete, .monaco-editor .char-delete { background-color: rgba(255, 0, 0, 0.2); }
+.monaco-diff-editor .line-delete, .monaco-diff-editor .char-delete { background-color: rgba(255, 0, 0, 0.2); }
+.monaco-editor .inline-deleted-margin-view-zone { background-color: rgba(255, 0, 0, 0.2); }
+.monaco-diff-editor.side-by-side .editor.modified { box-shadow: -6px 0 5px -5px #dddddd; }
+
+.mtk1 { color: #000000; }
+.mtk2 { color: #fffffe; }
+.mtk3 { color: #808080; }
+.mtk4 { color: #ff0000; }
+.mtk5 { color: #0451a5; }
+.mtk6 { color: #0000ff; }
+.mtk7 { color: #09885a; }
+.mtk8 { color: #008000; }
+.mtk9 { color: #dd0000; }
+.mtk10 { color: #383838; }
+.mtk11 { color: #cd3131; }
+.mtk12 { color: #863b00; }
+.mtk13 { color: #af00db; }
+.mtk14 { color: #800000; }
+.mtk15 { color: #e00000; }
+.mtk16 { color: #3030c0; }
+.mtk17 { color: #666666; }
+.mtk18 { color: #778899; }
+.mtk19 { color: #ff00ff; }
+.mtk20 { color: #608b4e; }
+.mtk21 { color: #a31515; }
+.mtk22 { color: #4f76ac; }
+.mtk23 { color: #008080; }
+.mtk24 { color: #001188; }
+.mtk25 { color: #4864aa; }
+.mtki { font-style: italic; }
+.mtkb { font-weight: bold; }
+.mtku { text-decoration: underline; text-underline-position: under; }</style><script charset="utf-8" src="./&#39;Uniq&#39; command #4 _ HackerRank_files/144-f9e2d14d06c967281615.js"></script><style type="text/css" media="screen"></style><meta name="description" id="meta-description" content="Let&#39;s learn about the &#39;uniq&#39; command."><meta property="og:description" id="meta-og-description" content="Let&#39;s learn about the &#39;uniq&#39; command."><title> 'Uniq' command #4 | HackerRank </title><meta property="og:title" id="meta-og-title" content="&#39;Uniq&#39; command #4 | HackerRank"><meta property="og:url" id="meta-og-url" content="https://www.hackerrank.com/challenges/text-processing-in-linux-the-uniq-command-4/problem"><meta name="twitter:url" id="meta-twitter-url" content="https://www.hackerrank.com/challenges/text-processing-in-linux-the-uniq-command-4/problem"><meta name="twitter:title" id="meta-twitter-title" content="&#39;Uniq&#39; command #4 | HackerRank"></head>
+<body id="hr_v2" class="hr-community">
+  <div id="fb-root"></div>
+  
+
+  <!-- Just a placeholder div to start loading open sans and source code loader -->
+  <div class="font-open-sans-loader"></div>
+  <div class="font-source-code-loader"></div>
+  <!-- Just a placeholder div to start loading open sans and source code loader end -->
+
+  <div id="content" onclick="void(0);"><div class="ui-kit-root"><div class="body-wrap  community-page challenges-page problem-page show-cookie-banner"><div class="toast-message loading"><span class="toast-container containment"><i class="ui-icon-loading"></i><span class="toast-text">Loading...</span></span></div><div class="theme-m new-design logged-user"><div class="page-header-wrapper theme-m-section"><nav class="community-header"><div class="container"><div class="header-nav-links theme-m-section"><ul class="nav-links"><li class="nav-link-item logo-wrap"><a class="nav_link backbone logo_mark js_logo_mark logo-link" data-analytics="NavBarLogo" data-attr1="/dashboard" href="https://www.hackerrank.com/dashboard"><img id="feed-intro" class="logo-img-small" src="./&#39;Uniq&#39; command #4 _ HackerRank_files/h_mark_sm-966d2b45e3.svg" alt=""></a></li><li class="nav-link-item"><a class="nav-link dashboard active" data-analytics="NavBarDomains" href="https://www.hackerrank.com/dashboard"><span>Practice</span></a></li><li class="nav-link-item"><a class="nav-link contests" data-analytics="NavBarContests" href="https://www.hackerrank.com/contests"><span>Compete</span></a></li><li class="nav-link-item"><a class="nav-link" data-analytics="NavBarJobs" href="https://www.hackerrank.com/jobs"><span>Jobs</span><i class="icon-circle js-jobs-notification navigation-highlight-icon hidden"></i></a></li><li class="nav-link-item"><a class="nav-link" data-analytics="NavBarLeaderboard" id="leaderboard-nav-link" href="https://www.hackerrank.com/leaderboard"><span>Leaderboard</span></a></li></ul></div><div class="nav-buttons theme-m-section"><ul class="pull-left psR"><li class="hide-in-private-contest search-input-container input-icon main-hr-search" id="search-span"><div class="search-form new-search"><div><div class="search-query asyn-autocomplete autocomplete"><div class="ac-input-wrap cf"><input autocomplete="off" class="ac-input " value="" placeholder="Search"></div></div><i class="ui-icon-search"></i></div></div></li></ul><ul class="pull-left nav-wrap mmL"><li class="hide-in-private-contest button-item"><div class="dropdown dropdown message-dropdown notify-dropdown theme-m-content"><a class="cursor dropdown-handle nav_link hr_nav_messages_link js-dropdown-toggle js-link" data-analytics="NavBarMessageIcon"><i class="dropdown-icon ui-icon-message"></i></a><div class="dropdown-menu large"><header class="psT psB text-center menu-header"><strong class="header-title">Messages</strong></header><div id="notify_messages" class="dropdown-body"><div class="hr_nav_messages_list"><div class="no-propagation text-center txt-navy empty-msg">You have no unread messages.</div></div></div><footer class="final text-center show-all"><a class="btn show-all-link" href="https://www.hackerrank.com/inbox" data-analytics="NavBarMessageShowAll">Show All</a></footer></div></div></li><li class="button-item"><div class="dropdown dropdown notification-dropdown notify-dropdown theme-m-content"><a class="cursor dropdown-handle nav_link hr_nav_notifications_link js-dropdown-toggle js-link" data-toggle="dropdown" data-analytics="NavBarNotificationsIcon"><i class="dropdown-icon ui-icon-notification"></i></a><div class="dropdown-menu large" id="notify_broadcasts"><header class="psA menu-header"><strong class="header-title">Notifications</strong><a class="hr_archive_all archive pull-right js-link" data-analytics="NavBarNotificationsArchiveAll"><i class="icon-folder-open"></i>Archive All</a></header><div class="clearfix dropdown-body"><div class="hr_nav_notifications_list"><ul><li class="notify_item dropdown-item cursor" data-id="72850706" data-category="contest-announcements" data-url="/domains/tutorials/30-days-of-code"><div class="notification-icon"><img src="./&#39;Uniq&#39; command #4 _ HackerRank_files/notifymarker-4be6d5a4c8.png"></div><div class="notification-subject pmT"><div class="psA"><div>Improve your coding skills. Join our 30 Days of Code challenge!</div><small class="meta"><time class="time-text" datetime="2019-02-25T07:19:12.000Z" title="2019-02-25 07:19">7 hours ago</time></small></div></div></li></ul></div></div><footer class="final show-all"><a class="btn show-all-link" href="https://www.hackerrank.com/notifications" data-analytics="NavBarNotificationsShowAll">Show All</a></footer></div></div></li><li class="button-item"><div class="dropdown dropdown dropdown-auth profile-menu cursor theme-m-content"><a class="backbone nav_link js-dropdown-toggle js-link toggle-wrap" data-analytics="NavBarProfileDropDown"><i class="ui-icon-user default-user-icon"></i><span class="mmR username text-ellipsis">sshetuguha</span><i class="ui-icon-chevron-down down-icon"></i></a><div class="dropdown-menu drop-list pull-right"><ul><li class="hide-in-private-contest profile-nav-item"><a class="navigation_hackos hackos-count" data-analytics="NavBarProfileDropDownHackos" href="https://www.hackerrank.com/sshetuguha/hackos">Hackos: <span class="navigation_hackos-count">276</span></a></li><li class="hide-in-private-contest profile-nav-item"><a rel="tooltip" data-placement="left" data-analytics="NavBarProfileDropDownProfile" href="https://www.hackerrank.com/sshetuguha">Profile<div class="ui-progress-bar progress-bar theme-default"><div class="progress-filler" style="width:20%"></div></div></a></li><li class="hide-in-private-contest profile-nav-item"><a href="https://www.hackerrank.com/settings" data-analytics="NavBarProfileDropDownSettings">Settings</a></li><li class="hide-in-private-contest profile-nav-item"><a href="https://www.hackerrank.com/challenges/bookmarks" data-analytics="NavBarDropDownBookmarks">Bookmarks</a></li><li class="hide-in-private-contest profile-nav-item"><a data-analytics="NavBarProfileDropDownCodeSnippets" href="https://www.hackerrank.com/snippets">Code Snippets</a></li><li class="hide-in-private-contest profile-nav-item"><a href="https://www.hackerrank.com/network" data-analytics="NavBarProfileDropDownNetwork">Network</a></li><li class="hide-in-private-contest profile-nav-item"><a href="https://www.hackerrank.com/submissions" data-analytics="NavBarProfileDropDownSubmissions">Submissions</a></li><li class="hide-in-private-contest profile-nav-item"><a href="https://www.hackerrank.com/administration" data-analytics="NavBarProfileDropDownAdministration">Administration</a></li><li class="profile-nav-item"><a class="logout-button js-link" data-analytics="NavBarProfileDropDownLogout">Logout</a></li></ul></div></div></li></ul></div></div></nav></div><header class="community-header-breadcrumb"><div class="container"><div class="d-flex justify-content-between align-items-center content-header-wrapper"><div class="community-header-breadcrumb-items"><ol itemtype="http://schema.org/BreadcrumbList" class="community-breadcrumb text-content"><li itemprop="itemListElement" itemtype="http://schema.org/ListItem" class="breadcrumb-item"><a itemprop="item" class="breadcrumb-link" data-analytics="Breadcrumb" data-attr1="Practice" data-attr2="global" data-attr7="1" href="https://www.hackerrank.com/dashboard"><span itemprop="name" class="breadcrumb-item-text">Practice</span></a><meta itemprop="position" content="1"></li><li itemprop="itemListElement" itemtype="http://schema.org/ListItem" class="breadcrumb-item"><span class="ui-icon-chevron-right mmL mmR chevron-icon"></span><a itemprop="item" class="breadcrumb-link" data-analytics="Breadcrumb" data-attr1="Linux Shell" data-attr2="global" data-attr7="1" href="https://www.hackerrank.com/domains/shell"><span itemprop="name" class="breadcrumb-item-text">Linux Shell</span></a><meta itemprop="position" content="1"></li><li itemprop="itemListElement" itemtype="http://schema.org/ListItem" class="breadcrumb-item"><span class="ui-icon-chevron-right mmL mmR chevron-icon"></span><a itemprop="item" class="breadcrumb-link" data-analytics="Breadcrumb" data-attr1="Text Processing" data-attr2="global" data-attr7="1" href="https://www.hackerrank.com/domains/shell/textpro"><span itemprop="name" class="breadcrumb-item-text">Text Processing</span></a><meta itemprop="position" content="1"></li><li itemprop="itemListElement" itemtype="http://schema.org/ListItem" class="breadcrumb-item"><span class="ui-icon-chevron-right mmL mmR chevron-icon"></span><span itemprop="name" class="breadcrumb-item-text">'Uniq' command #4</span><meta itemprop="position" content="1"></li></ol><div class="page-label-wrapper text-headline"><h1 class="page-label"><div class="challenge-page-label-wrapper align-items-center"><h1 class="ui-icon-label page-label">'Uniq' command #4</h1><button class="ui-btn ui-btn-normal ui-btn-plain star-button" tabindex="0" aria-label="Add bookmark"><div class="ui-content align-icon-right"><span class="ui-text"><i class="icon-bookmark star-icon ui-icon-star"></i></span></div></button></div></h1></div></div><div class="community-header-aside"><div class="challange-header-aside"><div class="domain-scores d-flex align-items-center"><div class="brcumb-points"><span class="zeta bold">Points: </span><span class="bold domain-score msR">56</span><span class="domain-rank-span"><span class="zeta bold">Rank: </span><span class="bold msR domain-rank ">7649</span></span></div></div></div></div></div></div></header><div class="container"></div><div class="community-content"><div class="challenge-view theme-m"><div class="challenge-page-header container"><div class="ui-tabs-wrap"><div class="render-list clearfix"><ul class="tab-header"><li id="Problem" class="tab-item active"><a class="tab-item-color" data-analytics="ChallengeViewTab" data-attr1="/challenges/text-processing-in-linux-the-uniq-command-4/problem" data-attr2="Problem" href="https://www.hackerrank.com/challenges/text-processing-in-linux-the-uniq-command-4/problem"><span class="ui-icon-label">Problem</span></a></li><li id="Submissions" class="tab-item"><a class="tab-item-color" data-analytics="ChallengeViewTab" data-attr1="/challenges/text-processing-in-linux-the-uniq-command-4/submissions" data-attr2="Submissions" href="https://www.hackerrank.com/challenges/text-processing-in-linux-the-uniq-command-4/submissions"><span class="ui-icon-label">Submissions</span></a></li><li id="Leaderboard" class="tab-item"><a class="tab-item-color" data-analytics="ChallengeViewTab" data-attr1="/challenges/text-processing-in-linux-the-uniq-command-4/leaderboard" data-attr2="Leaderboard" href="https://www.hackerrank.com/challenges/text-processing-in-linux-the-uniq-command-4/leaderboard"><span class="ui-icon-label">Leaderboard</span></a></li><li id="Discussions" class="tab-item"><a class="tab-item-color" data-analytics="ChallengeViewTab" data-attr1="/challenges/text-processing-in-linux-the-uniq-command-4/forum" data-attr2="Discussions" href="https://www.hackerrank.com/challenges/text-processing-in-linux-the-uniq-command-4/forum"><span class="ui-icon-label">Discussions</span></a></li><li id="Editorial" class="tab-item"><a class="tab-item-color" data-analytics="ChallengeViewTab" data-attr1="/challenges/text-processing-in-linux-the-uniq-command-4/editorial" data-attr2="Editorial" href="https://www.hackerrank.com/challenges/text-processing-in-linux-the-uniq-command-4/editorial"><span class="ui-icon-label">Editorial</span><i class="ui-icon-lock"></i></a></li><li id="Tutorial" class="tab-item"><a class="tab-item-color" data-analytics="ChallengeViewTab" data-attr1="/challenges/text-processing-in-linux-the-uniq-command-4/tutorial" data-attr2="Tutorial" href="https://www.hackerrank.com/challenges/text-processing-in-linux-the-uniq-command-4/tutorial"><span class="ui-icon-label">Tutorial</span></a></li></ul></div></div></div><section class="challenge-interface challenge-problem"><div class="challenge-body"><div class="challenge-body-elements-problem challenge-container-element"><div class="container challenge-page-wrap panes-container theme-m-content"><div class="full-screen-split split-wrap left-pane"><section class="problem-statement split"><div class="ui-tabs-wrap"><div class="tab-list-content"><div class="theme-m hr_tour-problem-statement problem-statement have-external-links"><div class="content-text challenge-text mlB hackdown-container theme-m"><div class="challenge-body-html"><div class="challenge_problem_statement"><div class="msB challenge_problem_statement_body"><div class="hackdown-content"><style id="MathJax_SVG_styles">.MathJax_SVG_Display {text-align: center; margin: 1em 0em; position: relative; display: block!important; text-indent: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; width: 100%}
+.MathJax_SVG .MJX-monospace {font-family: monospace}
+.MathJax_SVG .MJX-sans-serif {font-family: sans-serif}
+.MathJax_SVG {display: inline; font-style: normal; font-weight: normal; line-height: normal; font-size: 100%; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; padding: 0; margin: 0}
+.MathJax_SVG * {transition: none; -webkit-transition: none; -moz-transition: none; -ms-transition: none; -o-transition: none}
+.mjx-svg-href {fill: blue; stroke: blue}
+.MathJax_SVG_LineBox {display: table!important}
+.MathJax_SVG_LineBox span {display: table-cell!important; width: 10000em!important; min-width: 0; max-width: none; padding: 0; border: 0; margin: 0}
+</style><svg style="display: none;"><defs id="MathJax_SVG_glyphs"></defs></svg><p>Given a text file, display only those lines which are <strong>not</strong> followed or preceded by identical replications.  </p></div></div></div><div class="challenge_sample_input"><div class="msB challenge_sample_input_title"><p><strong>Sample Input</strong></p></div><div class="msB challenge_sample_input_body"><div class="hackdown-content"><style id="MathJax_SVG_styles">.MathJax_SVG_Display {text-align: center; margin: 1em 0em; position: relative; display: block!important; text-indent: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; width: 100%}
+.MathJax_SVG .MJX-monospace {font-family: monospace}
+.MathJax_SVG .MJX-sans-serif {font-family: sans-serif}
+.MathJax_SVG {display: inline; font-style: normal; font-weight: normal; line-height: normal; font-size: 100%; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; padding: 0; margin: 0}
+.MathJax_SVG * {transition: none; -webkit-transition: none; -moz-transition: none; -ms-transition: none; -o-transition: none}
+.mjx-svg-href {fill: blue; stroke: blue}
+.MathJax_SVG_LineBox {display: table!important}
+.MathJax_SVG_LineBox span {display: table-cell!important; width: 10000em!important; min-width: 0; max-width: none; padding: 0; border: 0; margin: 0}
+</style><svg style="display: none;"><defs id="MathJax_SVG_glyphs"></defs></svg><pre><code>A00
+a00
+01
+01
+00
+00
+02
+02
+A00
+03
+aa
+aa
+aa
+</code></pre></div></div></div><div class="challenge_sample_output"><div class="msB challenge_sample_output_title"><p><strong>Sample Output</strong></p></div><div class="msB challenge_sample_output_body"><div class="hackdown-content"><style id="MathJax_SVG_styles">.MathJax_SVG_Display {text-align: center; margin: 1em 0em; position: relative; display: block!important; text-indent: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; width: 100%}
+.MathJax_SVG .MJX-monospace {font-family: monospace}
+.MathJax_SVG .MJX-sans-serif {font-family: sans-serif}
+.MathJax_SVG {display: inline; font-style: normal; font-weight: normal; line-height: normal; font-size: 100%; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; padding: 0; margin: 0}
+.MathJax_SVG * {transition: none; -webkit-transition: none; -moz-transition: none; -ms-transition: none; -o-transition: none}
+.mjx-svg-href {fill: blue; stroke: blue}
+.MathJax_SVG_LineBox {display: table!important}
+.MathJax_SVG_LineBox span {display: table-cell!important; width: 10000em!important; min-width: 0; max-width: none; padding: 0; border: 0; margin: 0}
+</style><svg style="display: none;"><defs id="MathJax_SVG_glyphs"></defs></svg><pre><code>A00
+a00
+A00
+03
+</code></pre></div></div></div><div class="challenge_explanation"><div class="msB challenge_explanation_title"><p><strong>Explanation</strong></p></div><div class="msB challenge_explanation_body"><div class="hackdown-content"><style id="MathJax_SVG_styles">.MathJax_SVG_Display {text-align: center; margin: 1em 0em; position: relative; display: block!important; text-indent: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; width: 100%}
+.MathJax_SVG .MJX-monospace {font-family: monospace}
+.MathJax_SVG .MJX-sans-serif {font-family: sans-serif}
+.MathJax_SVG {display: inline; font-style: normal; font-weight: normal; line-height: normal; font-size: 100%; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; padding: 0; margin: 0}
+.MathJax_SVG * {transition: none; -webkit-transition: none; -moz-transition: none; -ms-transition: none; -o-transition: none}
+.mjx-svg-href {fill: blue; stroke: blue}
+.MathJax_SVG_LineBox {display: table!important}
+.MathJax_SVG_LineBox span {display: table-cell!important; width: 10000em!important; min-width: 0; max-width: none; padding: 0; border: 0; margin: 0}
+</style><svg style="display: none;"><defs id="MathJax_SVG_glyphs"></defs></svg><p>The comparison is case sensitive, so the first instance of "A00" and "a00" are considered different, hence unique. <br>
+The next instance of A00 is succeeded and preceded by different lines, so that is also included in the output. <br>
+The same holds true for 03 - it is succeeded and preceded by different lines, so that is also included in the output.  </p></div></div></div></div></div></div></div></div></section><section class="code-editor-section split"><div><div></div><div class="hr-monaco-editor-wrapper"><div class="hr-monaco-editor-with-input"><div><div class="hr-monaco-editor-with-statusbar"><div class="hr-monaco-editor"><div class="editor-toolbar"><div class="toolbar-left"></div><div class="toolbar-right"><div class="Select  select-language has-value is-searchable Select--single"><div class="Select-control"><span class="Select-multi-value-wrapper" id="react-select-6--value"><div class="Select-value"><span class="Select-value-label" role="option" aria-selected="true" id="react-select-6--value-item">BASH</span></div><div class="Select-input" style="display: inline-block;"><input aria-activedescendant="react-select-6--value" aria-expanded="false" aria-haspopup="false" aria-owns="" role="combobox" value="" style="box-sizing: content-box; width: 5px;"><div style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre; font-size: 16px; font-family: OpenSans, Arial, Helvetica, sans-serif; font-weight: 400; font-style: normal; letter-spacing: normal; text-transform: none;"></div></div></span><span class="Select-arrow-zone"><span class="Select-arrow"></span></span></div></div><div class="toolbar-custom-items"><div class="hr-monaco-reset-code"><button class="ui-btn ui-btn-normal cursor reset-btn" tabindex="0" title="Reset Code" type="button"><div class="ui-content align-icon-right"><span class="ui-text"><i class="ui-icon-reset-code icon-grey reset-icon"></i></span></div></button></div><div class="fullscreen-icon"><a class="fullscreen no-select active-link hr-monaco-base-btn" title="Switch to vertical layout" data-original-title="Switch to vertical layout"><i class="ui-icon-maximize icon-grey no-select"></i></a></div></div><div class="hr-monaco-settings-editor"><button class="ui-btn ui-btn-link cursor settings-toggle" tabindex="0" aria-haspopup="true" aria-expanded="false" aria-label="Editor Settings" title="Editor Settings"><i class="icon-cog ui-icon-settings icon-grey"></i></button></div></div></div><div class="hr-monaco-editor-parent"><div class="hr-monaco-base-editor showUnused" data-keybinding-context="1" data-mode-id="shell" style="height: 437px;"><div class="monaco-editor vs focused" data-uri="file:///lsp-56184950-3906-11e9-b87e-2f90bf63a53b/Solution.sh" style="width: 890px; height: 437px;"><div data-mprt="3" class="overflow-guard" style="width: 890px; height: 437px;"><div class="margin" role="presentation" aria-hidden="true" style="position: absolute; will-change: transform; top: 0px; height: 437px; width: 71px;"><div class="glyph-margin" style="left: 0px; width: 0px; height: 437px;"></div><div class="margin-view-zones" role="presentation" aria-hidden="true" style="position: absolute;"></div><div class="margin-view-overlays focused" role="presentation" aria-hidden="true" style="position: absolute; width: 71px; font-family: monospace; font-weight: normal; font-size: 15px; line-height: 20px; letter-spacing: 0px; height: 437px;"><div style="position:absolute;top:0px;width:100%;height:20px;"><div class="line-numbers lh-even" style="left:0px;width:45px;">1</div></div><div style="position:absolute;top:20px;width:100%;height:20px;"><div class="line-numbers lh-even" style="left:0px;width:45px;">2</div></div><div style="position:absolute;top:40px;width:100%;height:20px;"><div class="current-line" style="width:71px; height:20px;"></div><div class="line-numbers lh-even" style="left:0px;width:45px;">3</div></div></div></div><div class="monaco-scrollable-element editor-scrollable vs" role="presentation" data-mprt="5" style="position: absolute; overflow: hidden; left: 71px; height: 437px; width: 819px;"><div class="lines-content monaco-editor-background" style="position: absolute; overflow: hidden; width: 1e+06px; height: 1e+06px; will-change: transform; top: 0px; left: 0px;"><div class="view-overlays focused" role="presentation" aria-hidden="true" style="position: absolute; height: 0px; width: 819px;"><div style="position:absolute;top:0px;width:100%;height:20px;"></div><div style="position:absolute;top:20px;width:100%;height:20px;"></div><div style="position:absolute;top:40px;width:100%;height:20px;"><div class="current-line" style="width:819px; height:20px;"></div></div></div><div role="presentation" aria-hidden="true" class="view-rulers"></div><div class="view-zones" role="presentation" aria-hidden="true" style="position: absolute;"></div><div class="view-lines" role="presentation" aria-hidden="true" data-mprt="7" style="position: absolute; font-family: monospace; font-weight: normal; font-size: 15px; line-height: 20px; letter-spacing: 0px; width: 819px; height: 437px;"><div style="top:0px;height:20px;" class="view-line"><span><span class="mtk1">uniq&nbsp;</span><span class="mtk4">-u</span></span></div><div style="top:20px;height:20px;" class="view-line"><span><span>&nbsp;</span></span></div><div style="top:40px;height:20px;" class="view-line"><span><span>&nbsp;</span></span></div></div><div data-mprt="1" class="contentWidgets" style="position: absolute; top: 0px;"><div class="lightbulb-glyph" title="Show Fixes (Ctrl+.)" widgetid="LightBulbWidget" style="position: absolute; visibility: hidden;"></div></div><div role="presentation" aria-hidden="true" class="cursors-layer cursor-line-style cursor-solid"><div class="cursor " style="height: 20px; top: 40px; left: 0px; font-family: monospace; font-weight: normal; font-size: 15px; line-height: 20px; letter-spacing: 0px; display: block; visibility: hidden; width: 2px;"></div></div></div><div role="presentation" aria-hidden="true" class="invisible scrollbar horizontal" style="position: absolute; width: 805px; height: 10px; left: 0px; bottom: 0px;"><div class="slider" style="position: absolute; top: 0px; left: 0px; height: 10px; will-change: transform; width: 805px;"></div></div><canvas class="decorationsOverviewRuler" aria-hidden="true" width="14" height="437" style="position: absolute; will-change: transform; top: 0px; right: 0px; width: 14px; height: 437px;"></canvas><div role="presentation" aria-hidden="true" class="invisible scrollbar vertical" style="position: absolute; width: 14px; height: 437px; right: 0px; top: 0px;"><div class="slider" style="position: absolute; top: 0px; left: 0px; width: 14px; will-change: transform; height: 437px;"></div></div></div><div role="presentation" aria-hidden="true" style="width: 890px;"></div><textarea data-mprt="6" class="inputarea" wrap="off" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" aria-label="Editor content;Press Alt+F1 for Accessibility Options." role="textbox" aria-multiline="true" aria-haspopup="false" aria-autocomplete="both" style="font-family: monospace; font-weight: normal; font-size: 1px; line-height: 20px; letter-spacing: 0px; top: 40px; left: 71px; width: 1px; height: 1px;"></textarea><div class="monaco-editor-background textAreaCover line-numbers" style="position: absolute; top: 0px; left: 0px; width: 0px; height: 0px;"></div><div data-mprt="4" class="overlayWidgets" style="width: 890px;"><div class="accessibilityHelpWidget" role="dialog" aria-hidden="true" widgetid="editor.contrib.accessibilityHelpWidget" style="display: none; position: absolute;"><div role="document"></div></div><div class="monaco-editor-hover hidden" aria-hidden="true" role="presentation" widgetid="editor.contrib.modesGlyphHoverWidget" style="position: absolute;"></div></div><div data-mprt="8" class="minimap slider-mouseover" role="presentation" aria-hidden="true" style="position: absolute; left: 0px; width: 0px; height: 437px;"><div class="minimap-shadow-hidden" style="height: 437px;"></div><canvas width="1" height="437" style="position: absolute; left: 0px; width: 1px; height: 437px;"></canvas><div class="minimap-slider" style="position: absolute; will-change: transform; width: 0px;"><div class="minimap-slider-horizontal" style="position: absolute; width: 0px; height: 0px;"></div></div></div></div><div data-mprt="2" class="overflowingContentWidgets"><div class="monaco-editor rename-box" widgetid="__renameInputWidget" style="height: 20px; box-shadow: rgb(168, 168, 168) 0px 2px 8px; position: absolute; visibility: hidden; max-width: 1366px;"><input class="rename-input" type="text" aria-label="Rename input. Type new name and press Enter to commit." style="font-family: monospace; font-weight: normal; font-size: 15px; background-color: rgb(255, 255, 255); color: rgb(97, 97, 97); border-width: 0px; border-style: none;"></div><div class="monaco-editor-hover hidden" tabindex="0" widgetid="editor.contrib.modesContentHoverWidget" style="position: absolute; visibility: hidden; max-width: 1366px;"><div class="monaco-scrollable-element " role="presentation" style="position: relative; overflow: hidden;"><div class="monaco-editor-hover-content" style="overflow: hidden; font-size: 15px; line-height: 20px; max-height: 250px;"></div><div role="presentation" aria-hidden="true" class="invisible scrollbar horizontal" style="position: absolute;"><div class="slider" style="position: absolute; top: 0px; left: 0px; height: 10px; will-change: transform;"></div></div><div role="presentation" aria-hidden="true" class="invisible scrollbar vertical" style="position: absolute;"><div class="slider" style="position: absolute; top: 0px; left: 0px; width: 10px; will-change: transform;"></div></div><div class="shadow"></div><div class="shadow"></div><div class="shadow top-left-corner"></div></div></div><div class="editor-widget suggest-widget" widgetid="editor.widget.suggestWidget" style="position: absolute; visibility: inherit; max-width: 1366px; top: 20px; left: 134px; line-height: 20px;" monaco-visible-content-widget="true"><div class="message" aria-hidden="true" style="display: none; background-color: rgb(239, 239, 242); border-color: rgb(200, 200, 200);"></div><div class="tree" style="background-color: rgb(239, 239, 242); border-color: rgb(200, 200, 200); height: 20px; display: none;" aria-hidden="true"><div class="monaco-list list_id_3 selection-none" role="tree" tabindex="0"><div class="monaco-scrollable-element " role="presentation" style="position: relative; overflow: hidden;"><div class="monaco-list-rows" style="overflow: hidden; height: 0px; transform: translate3d(0px, 0px, 0px);"></div><div role="presentation" aria-hidden="true" class="invisible scrollbar horizontal" style="position: absolute; width: 0px; height: 0px; left: 0px; bottom: 0px;"><div class="slider" style="position: absolute; top: 0px; left: 0px; height: 10px; will-change: transform; width: 0px;"></div></div><div role="presentation" aria-hidden="true" class="invisible scrollbar vertical" style="position: absolute; width: 10px; height: 20px; right: 0px; top: 0px;"><div class="slider" style="position: absolute; top: 0px; left: 0px; width: 10px; will-change: transform; height: 20px;"></div></div></div><style type="text/css" media="screen">.monaco-list.list_id_3:focus .monaco-list-row.focused { background-color: #dff0ff; }
+.monaco-list.list_id_3:focus .monaco-list-row.focused:hover { background-color: #dff0ff; }
+.monaco-list.list_id_3:focus .monaco-list-row.selected { background-color: #2477ce; }
+.monaco-list.list_id_3:focus .monaco-list-row.selected:hover { background-color: #2477ce; }
+.monaco-list.list_id_3:focus .monaco-list-row.selected { color: #ffffff; }
+.monaco-list.list_id_3:focus .monaco-list-row.selected.focused { background-color: #2477ce; }
+.monaco-list.list_id_3:focus .monaco-list-row.selected.focused { color: #ffffff; }
+.monaco-list.list_id_3 .monaco-list-row.focused { background-color:  #dff0ff; }
+.monaco-list.list_id_3 .monaco-list-row.focused:hover { background-color:  #dff0ff; }
+.monaco-list.list_id_3 .monaco-list-row.selected { background-color:  #dddfea; }
+.monaco-list.list_id_3 .monaco-list-row.selected:hover { background-color:  #dddfea; }
+.monaco-list.list_id_3 .monaco-list-row:hover { background-color:  #f0f0f0; }</style></div></div><div class="details" aria-hidden="true" style="font-size: 15px; display: none; background-color: rgb(239, 239, 242); border-color: rgb(200, 200, 200);"><div class="monaco-scrollable-element " role="presentation" style="position: relative; overflow: hidden;"><div class="body" style="overflow: hidden;"><div class="header"><span class="close" title="Read less... (Ctrl+Space)" style="height: 20px; width: 20px;"></span><p class="type" style="font-family: monospace;"></p></div><p class="docs"></p></div><div role="presentation" aria-hidden="true" class="invisible scrollbar horizontal" style="position: absolute;"><div class="slider" style="position: absolute; top: 0px; left: 0px; height: 10px; will-change: transform;"></div></div><div role="presentation" aria-hidden="true" class="invisible scrollbar vertical" style="position: absolute;"><div class="slider" style="position: absolute; top: 0px; left: 0px; width: 10px; will-change: transform;"></div></div><div class="shadow"></div><div class="shadow"></div><div class="shadow top-left-corner"></div></div></div></div></div><div class="context-view monaco-builder-hidden" aria-hidden="true"></div></div></div></div></div><div class="hr-monaco-editor-statusbar"><div class="statusbar-position">Line: 3 Col: 1</div><div style="display: flex;"><div class="statusbar-message"></div></div></div></div><div class="pmR pmL pmB plT run-code-wrapper"><button class=" pull-right btn btn-primary hr-monaco-submit">Submit Code</button><button class=" pull-right btn msR hr-monaco-compile">Run Code</button></div></div><div class="pmR pmL pmB hr-monaco-custom-input-wrapper inline"><div><button class="btn btn-text upload-file mlR" data-analytics="Upload File" type="button"><i class="icon-upload ui-icon-upload"></i>Upload Code as File</button></div><div><label><div class="custom-checkbox inline"><input type="checkbox" class="custom-input-checkbox"></div><span class="lmT msL testcase-label">Test against custom input</span></label></div></div></div></div></div><div class="challenge-response fs-container"><div class="output-area-wrap"><div class="output-area mlT psT" id="output-area"><div class="code-compile-test-view theme-m-content"><div class="compile-error-wrapper"><p class="status compile-success">Congratulations!</p><p class="compile-advice">You have passed the sample test cases. Click the submit button to run your code against all the test cases.</p></div><div class="tc-container"><div class="testcase-wrapper theme-m"><div class="ui-tabs-wrap testcases-result-wrapper theme-m vertical-layout"><div class="render-list clearfix"><ul class="tab-header" role="tablist"><li id="Sample Test case 0" class="tab-item active" role="tab" aria-selected="true"><div class="testcase-tab-item tab-item-color-success testcase-item" data-attr2="master" data-attr3="text-processing-in-linux-the-uniq-command-4" data-analytics="TestCaseResultsTab" data-attr1="RunCode" data-attr5="0"><span class="ui-icon-label tab-item-label">Sample Test case 0</span><i class="ui-icon-check-circle"></i></div></li></ul></div><div class="tab-list-content tab-content d-flex" role="tabpanel"><div class="tab-pane-content"><div class="flex-block compilation-time-response full-width flex-column"><div class="stdin run-time-message flex-display"><div class="compile-field-label">Input (stdin)<a data-attr2="master" data-attr3="text-processing-in-linux-the-uniq-command-4" data-analytics="DownloadTestcase" data-attr1="RunCode" data-attr4="stdin" data-attr7="0" data-attr6="right" class="text-link tc-download-link">Download</a></div><pre class="compile-output-message"><code class="bold">A00
+a00
+01
+01
+00
+00
+02
+02
+A00
+03
+aa
+aa
+aa{-truncated-}</code><a data-attr2="master" data-attr3="text-processing-in-linux-the-uniq-command-4" data-analytics="DownloadTestcase" data-attr1="RunCode" data-attr4="stdin" data-attr7="0" data-attr6="down" class="text-link d-flex cursor-pointer">Download to view the full testcase</a></pre></div><div class="stdout run-time-message flex-display"><div class="compile-field-label">Your Output (stdout)</div><pre class="compile-output-message"><code class="bold">A00
+a00
+A00
+03
+</code></pre></div><div class="expected-output run-time-message flex-display"><div class="compile-field-label">Expected Output<a data-attr2="master" data-attr3="text-processing-in-linux-the-uniq-command-4" data-analytics="DownloadTestcase" data-attr1="RunCode" data-attr4="expected-output" data-attr7="0" data-attr6="right" class="text-link tc-download-link">Download</a></div><pre class="compile-output-message"><code class="bold">A00
+a00
+A00
+03</code></pre></div></div></div></div></div></div></div></div></div></div></div></section></div><div class="right-pane"><aside class="theme-m-content fullscreen-hide challenge-sidebar"><div class="challenge-sidebar-container"><div class="sidebar-problem-difficulty challenge-sidebar-help"><div class="difficulty-block"><p class="difficulty-label">Author</p><a class="pull-right text-link" data-analytics="ChallengeViewHeaderAuthor" data-attr1="text-processing-in-linux-the-uniq-command-4" data-attr2="PRASHANTB1984" href="https://www.hackerrank.com/profile/PRASHANTB1984">PRASHANTB1984</a></div><div class="difficulty-block"><p class="difficulty-label">Difficulty</p><p class="pull-right difficulty-easy">Easy</p></div><div class="difficulty-block"><p class="difficulty-label">Max Score</p><p class="sidebar-detail pull-right">1</p></div><div class="difficulty-block"><p class="difficulty-label">Submitted By</p><a class="pull-right text-link" data-analytics="ChallengeViewHackerCount" data-attr1="text-processing-in-linux-the-uniq-command-4" href="https://www.hackerrank.com/challenges/text-processing-in-linux-the-uniq-command-4/leaderboard">6939</a></div></div><div class="challenge-sidebar-help"><h2 class="text-sec-headline-s">Need Help?</h2><hr class="hr-line-light"><div class="mlB"><div class="link-wrapper"><a data-analytics="ChallengeSidebarUI" data-attr1="tutorial" data-attr2="text-processing-in-linux-the-uniq-command-4" data-attr3="master" href="https://www.hackerrank.com/challenges/text-processing-in-linux-the-uniq-command-4/tutorial"><i class="ui-icon-tutorial ui-icon-grey sidebar-icon"></i><span class="ui-icon-label">View tutorial</span></a></div><div class="link-wrapper"><a data-analytics="ChallengeSidebarUI" data-attr1="discussions" data-attr2="text-processing-in-linux-the-uniq-command-4" data-attr3="master" href="https://www.hackerrank.com/challenges/text-processing-in-linux-the-uniq-command-4/forum"><i class="ui-icon-discussion ui-icon-grey sidebar-icon"></i><span class="ui-icon-label">View discussions</span></a></div><div class="link-wrapper"><a data-analytics="ChallengeSidebarUI" data-attr1="editorial" data-attr2="text-processing-in-linux-the-uniq-command-4" data-attr3="master" href="https://www.hackerrank.com/challenges/text-processing-in-linux-the-uniq-command-4/editorial"><i class="ui-icon-editorial ui-icon-grey sidebar-icon"></i><span class="ui-icon-label">View editorial</span></a></div><div class="link-wrapper"><a data-analytics="ChallengeSidebarUI" data-attr1="topscorers" data-attr2="text-processing-in-linux-the-uniq-command-4" data-attr3="master" href="https://www.hackerrank.com/challenges/text-processing-in-linux-the-uniq-command-4/leaderboard"><i class="ui-icon-trophy ui-icon-grey sidebar-icon"></i><span class="ui-icon-label">View top submissions</span></a></div></div></div><div class="challenge-rating rating"><p class="zeta rating-label">rate this challenge</p><div class="rating"><i class="rating-icon cursor ui-icon-star" data-analytics="RatedChallenge" data-attr7="1"></i><i class="rating-icon cursor ui-icon-star" data-analytics="RatedChallenge" data-attr7="2"></i><i class="rating-icon cursor ui-icon-star" data-analytics="RatedChallenge" data-attr7="3"></i><i class="rating-icon cursor ui-icon-star" data-analytics="RatedChallenge" data-attr7="4"></i><i class="rating-icon cursor ui-icon-star" data-analytics="RatedChallenge" data-attr7="5"></i></div></div><div class="challenge-sidebar-help need-help-wrapper"><div class="text-sec-headline-s">MORE DETAILS</div><hr class="hr-line-light"><div class="link-wrapper"><a target="_blank" id="pdf-link" data-analytics="ChallengeViewSidebarPDF" data-attr1="text-processing-in-linux-the-uniq-command-4" href="https://www.hackerrank.com/rest/contests/master/challenges/text-processing-in-linux-the-uniq-command-4/download_pdf?language=English"><i class="ui-icon-grey sidebar-icon ui-icon-download"></i><span class="ui-icon-label">Download problem statement</span></a></div><div class="link-wrapper"><a target="_blank" id="test-cases-link" data-analytics="ChallengeViewSidebarTestCases" data-attr1="text-processing-in-linux-the-uniq-command-4" href="https://www.hackerrank.com/rest/contests/master/challenges/text-processing-in-linux-the-uniq-command-4/download_testcases"><i class="ui-icon-grey sidebar-icon ui-icon-download"></i><span class="ui-icon-label">Download sample test cases</span></a></div><div class="link-wrapper fullscreen-hide"><a class="cursor" data-analytics="ChallengeViewSuggestEdit" data-attr1="text-processing-in-linux-the-uniq-command-4"><i class="ui-icon-grey sidebar-icon ui-icon-edit"></i><span class="ui-icon-label">Suggest Edits</span></a></div></div><div class="social-share-wrap-2"><div class="clearfix"><div class="social-links-wrapper pull-left"><a class="cursor"><i class="social-share-icon ui-icon-facebook"></i></a><a class="cursor"><i class="social-share-icon ui-icon-twitter"></i></a><a class="cursor"><i class="social-share-icon ui-icon-linkedin"></i></a></div></div></div></div></aside></div></div></div></div></section></div></div><footer class="community-footer"><ul class="footer-links"><li class="link-item"><a target="_blank" class="footer-link calendar" data-analytics="FooterLinkCalendar" href="https://www.hackerrank.com/calendar">Contest Calendar</a></li><li class="link-item"><a target="_blank" class="footer-link blog" data-analytics="FooterLinkBlog" href="https://blog.hackerrank.com/">Blog</a></li><li class="link-item"><a target="_blank" class="footer-link scoring" data-analytics="FooterLinkScoring" href="https://www.hackerrank.com/scoring">Scoring</a></li><li class="link-item"><a target="_blank" class="footer-link environment" data-analytics="FooterLinkEnvironment" href="https://www.hackerrank.com/environment">Environment</a></li><li class="link-item"><a target="_blank" class="footer-link faq" data-analytics="FooterLinkFAQ" href="https://www.hackerrank.com/faq">FAQ</a></li><li class="link-item"><a target="_blank" class="footer-link" data-analytics="FooterLinkAboutUs" href="https://www.hackerrank.com/aboutus">About Us</a></li><li class="link-item"><a target="_blank" class="footer-link" data-analytics="FooterLinkSupport" href="https://help.hackerrank.com/hc/en-us">Support</a></li><li class="link-item"><a target="_blank" class="footer-link" data-analytics="FooterLinkCareers" href="https://www.hackerrank.com/careers">Careers</a></li><li class="link-item"><a target="_blank" class="footer-link" data-analytics="FooterLinkTermsOfService" href="https://www.hackerrank.com/terms-of-service">Terms Of Service</a></li><li class="link-item"><a target="_blank" class="footer-link" data-analytics="FooterLinkPrivacyPolicy" href="https://www.hackerrank.com/privacy">Privacy Policy</a></li><li class="link-item"><a target="_blank" class="footer-link featureRequestButton" data-analytics="FooterLinkFeatureRequest" href="https://www.hackerrank.com/support/feature">Request a Feature</a></li></ul></footer></div></div></div></div><!--Required to handle event bubbling of click in ios safari -->
+
+  <script>
+    //HR namespace
+    var HR = {};
+    HR.development = false;
+    HR.assetPath = 'https://hrcdn.net/fcore/assets/';
+    HR.pageLoadTime = Date.now();
+    HR.productNamespace = 'hackerrank';
+    HR.production = true;
+    HR.devServer = false;
+    HR.isIsomorphic = true;
+    HR.loadedWithOldCss = true;
+    HR.pusher = '{"key":"a280047e3b323ccb1b65","cluster":"mt1"}';
+  </script>
+
+  <!-- Vendor scripts -->
+  
+    <script src="./&#39;Uniq&#39; command #4 _ HackerRank_files/hackerrank_r_vendor-4dd797fb49.js"></script>
+  
+
+  
+  <script src="./&#39;Uniq&#39; command #4 _ HackerRank_files/runtime-b6bab433055322580beb.js"></script>
+  <script src="./&#39;Uniq&#39; command #4 _ HackerRank_files/hackerrank_r_app-354b6bdab545f68fee4a.js"></script>
+  
+<script>
+  var getUser = (function() {
+    var userData;
+    $(window).on('initializeNewUser', function(e, user) {
+      userData = user;
+    });
+    try{
+      if (typeof userData === 'undefined') {
+        userData = JSON.parse(decodeURI($('#initialUserData').html()));
+        $('#initialUserData').remove();
+      }
+    } catch(e){
+      userData = {};
+      console.log('No initial User data found');
+    }
+    return function() {
+      return userData;
+    }
+  })();
+</script>
+
+
+<!-- setting up sentry -->
+
+  <script src="./&#39;Uniq&#39; command #4 _ HackerRank_files/raven.min.js" async="" crossorigin="anonymous" id="raven"></script>
+  <script>
+    (function(window, queue, loaded, script, user) {
+
+        var setupRaven = function(user) {
+          var userContext = {};
+          if (user && !!user.id) {
+            userContext.handle = user.id;
+          }
+          var extraContext = {
+            cdnUrl: Cookies.get("cdn_url")
+          }
+          if (Cookies) {
+            if (HR.productNamespace === 'hackerrank') {
+              extraContext.mixpanel_token = Cookies.get('hackerrank_mixpanel_token')
+            } else if (HR.productNamespace === 'hackerrankx') {
+              extraContext.mixpanel_token = Cookies.get('hackerrankx_mixpanel_token')
+            }
+          }
+          if(typeof Raven !== 'undefined') {
+            Raven.setUserContext(userContext);
+            Raven.setExtraContext(extraContext);
+          }
+        }
+        $(window).on('initializeNewUser', function(e, user) {
+          setupRaven(user);
+        });
+
+        window.onerror = function e(message, file, lineNo, columnNo, error) {
+            if (loaded) return;
+            queue.push([message, file, lineNo, columnNo, error]);
+        };
+
+        window.onunhandledrejection = function e(error) {
+            if (loaded) return;
+            queue.push([
+                error.reason,
+            ]);
+        };
+
+        script.onreadystatechange = script.onload = function() {
+            if (loaded) return;
+            loaded = true;
+
+            Raven.config('https://6b2d52b23d5a4dd4bc44330335327c04@sentry.io/234162', {
+                release: "912bdc6c48",
+                ignoreUrls: [/cdn\.userty\.com/],
+                ignoreErrors: [
+                  'Error: Connection is disposed',
+                  'Connection got disposed',
+                  'A network error occurred',
+                  'Model is disposed!',
+                ],
+            }).install();
+
+            setupRaven(user);
+
+            window.onunhandledrejection = function e(error) {
+                Raven.captureException(error.reason, {
+                    extra: {
+                        type: error.type,
+                    },
+                });
+            };
+
+            queue.forEach(function(error) {
+                Raven.captureException(error[4] || error[0], {
+                    extra: {
+                        file: error[1],
+                        line: error[2],
+                        col: error[3],
+                    },
+                });
+            });
+        };
+    }(window, [], false, document.getElementById('raven'), getUser()));
+ </script>
+
+
+
+
+<!-- google analytics tracking -->
+<script>
+  var _gaq = _gaq || [];
+  
+  _gaq.push(['candidate_company._setAccount', 'UA-45092266-1']);
+  _gaq.push(['candidate_company._trackPageview']);
+  _gaq.push(['candidate_company._gat._anonymizeIp']);
+  _gaq.push(['_setCampSourceKey', 'utm_source']);
+  _gaq.push(['_setCampMediumKey', 'utm_medium']);
+  _gaq.push(['_setCampContentKey', 'utm_keyword']);
+  _gaq.push(['_setCampTermKey', 'utm_keyword']);
+  _gaq.push(['_setCampNameKey', 'utm_campaign']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+  
+</script>
+<!-- Pending candidate site custom GA code -->
+<!-- google analytics tracking end-->
+
+<!-- mixpanel tracking -->
+<script type="text/javascript">
+  
+    (function(e,a){if(!a.__SV){var b=window;try{var c,l,i,j=b.location,g=j.hash;c=function(a,b){return(l=a.match(RegExp(b+"=([^&]*)")))?l[1]:null};g&&c(g,"state")&&(i=JSON.parse(decodeURIComponent(c(g,"state"))),"mpeditor"===i.action&&(b.sessionStorage.setItem("_mpcehash",g),history.replaceState(i.desiredHash||"",e.title,j.pathname+j.search)))}catch(m){}var k,h;window.mixpanel=a;a._i=[];a.init=function(b,c,f){function e(b,a){var c=a.split(".");2==c.length&&(b=b[c[0]],a=c[1]);b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,
+0)))}}var d=a;"undefined"!==typeof f?d=a[f]=[]:f="mixpanel";d.people=d.people||[];d.toString=function(b){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);b||(a+=" (stub)");return a};d.people.toString=function(){return d.toString(1)+".people (stub)"};k="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+for(h=0;h<k.length;h++)e(d,k[h]);a._i.push([b,c,f])};a.__SV=1.2;b=e.createElement("script");b.type="text/javascript";b.async=!0;b.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";c=e.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c)}})(document,window.mixpanel||[]);
+    mixpanel.init("bcb75af88bccc92724ac5fd79271e1ff");
+
+    
+      
+        mixpanel.init("86cf4681911d3ff600208fdc823c5ff5", {}, "jobs_test");
+      
+      mixpanel.identify(Cookies.get("hackerrank_mixpanel_token"));
+    
+  
+</script>
+<!-- mixpanel tracking end-->
+
+<!-- auryc tracking start -->
+<script type="text/javascript">
+  
+    function aurycProps(user) {
+      if(HR.productNamespace === 'hackerrankx') {
+        userProps = {
+          user_role: user.role,
+          company_id: user.company.id,
+          plan_name: user.company.plan_name
+        }
+      } else if (HR.productNamespace === 'hackerrank') {
+        userProps = {
+          user_id: user.id,
+        };
+      } else {
+        userProps = {};
+      }
+      return userProps;
+    }
+
+    function setupAurycProps(aurycId, user) {
+      userProps = aurycProps(user);
+      window.auryc.identify(aurycId);
+      window.auryc.addUserProperties(userProps);
+      window.auryc.setFeedbackEnabled(!!user.enable_nps_survey);
+      window.auryc.addSessionProperties({productNamespace: HR.productNamespace});
+    }
+
+    setupAuryc = function(user) {
+      hackerrankxAurycSrc = "//cdn.userty.com/207-hackerrankcom/container.js";
+      hackerrankAurycSrc = "//cdn.userty.com/531-hackerrankCommunity/container.js";
+      if(HR.productNamespace === 'hackerrankx') {
+        if (!(user && user.id) || !!Cookies.get('admin_su') || user.disable_auryc) return;
+        src = hackerrankxAurycSrc;
+        aurycId = user.id.toString();
+      } else {
+        return
+      }
+
+      ;(function (g) { g.aurycReadyCb = g.aurycReadyCb || []; var d = document, i, am = d.createElement("script"), h = d.head || d.getElementsByTagName("head")[0],aex = { "src": src, "data-cfasync": "false", "async": "true", "defer": "true", "data-vendor": "userty", "data-role": "container", "charset": "utf-8" }; for (var attr in aex) { am.setAttribute(attr,aex[attr]); } h.appendChild(am); })(window);
+
+      if (window.auryc) {
+        setupAurycProps(aurycId, user)
+      } else if (window.aurycReadyCb) {
+        window.aurycReadyCb.push(function() {
+          setupAurycProps(aurycId, user)
+        })
+      }
+    }
+
+    setupAuryc(getUser());
+    $(window).on('initializeNewUser', function(e, user) {
+      setupAuryc(user);
+    });
+  
+</script>
+<!-- auryc tracking end -->
+
+<!-- GTM tracking -->
+
+<script type="text/javascript">
+  var gtmTracking = function (user){
+    if (window.dataLayer) {
+      
+
+      
+        window.dataLayer.push({'event': 'setUserProps', 'userProps': {
+          level: user.level,
+          badges_onboarding_status: user.badges_onboarding_status,
+          jobs_consent: user.jobs_consent
+        }});
+      
+    }
+  }
+  gtmTracking(getUser());
+  $(window).on('initializeNewUser', function(e, user) {
+    gtmTracking(user);
+  });
+
+</script>
+
+<!-- GTM tracking end -->
+
+
+<!-- Google Tag Manager (noscript) #1 -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FXW96J"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) #1 -->
+
+
+<!-- Marketo to be added later -->
+
+
+
+<!-- Bizible -->
+
+<!-- HR metrics init -->
+<script type="text/javascript">
+
+  (function() {
+    hr_metrics.init({
+      product: 'hackerrank',
+      use_cookie: true,
+      uid_cookie_key: 'hackerrank_mixpanel_token',
+      uid_token_cookie_key: 'metrics_user_identifier',
+      session_cookie_key: 'session_id',
+      metrics_endpoint:  'https://metrics.hackerrank.com/metrics' 
+    });
+  })();
+
+  (function(h) {
+    window.hr_metrics = h;
+    if (!h.loaded) {
+      var a = ['track', 'batch_track', 'app_track', 'externalService', 'init', 'batch_track_record', 'track_dwell_time', 'set_navigation_data'];
+      for (var i = 0; i < a.length; i++) {
+        if (!h[a[i]]) {h[a[i]] = function() {};}
+      }
+    }
+  })(window.hr_metrics || {});
+
+
+
+</script>
+
+<!-- hrutm_params -->
+
+<!-- HR metrics extension pack -->
+<script type="text/javascript">
+
+  
+    if (('performance' in window) && ('timing' in window.performance)) {
+      $(window).on("load", function() {
+        setTimeout(function(){
+          var timing = window.performance.timing;
+          var obj = {
+            referring_url: window.location.pathname,
+            fullLoadTime: timing.loadEventEnd - timing.navigationStart,
+            // Total time from req start to load
+            loadTime: timing.loadEventEnd - timing.fetchStart,
+            // Time spent constructing the DOM tree
+            domReadyTime: timing.domComplete - timing.domInteractive,
+            // Time consumed preparing the new page
+            readyStart: timing.fetchStart - timing.navigationStart,
+            // Time spent during redirection
+            redirectTime: timing.redirectEnd - timing.redirectStart,
+            // AppCache
+            appcacheTime: timing.domainLookupStart - timing.fetchStart,
+            // Time spent unloading documents
+            unloadEventTime: timing.unloadEventEnd - timing.unloadEventStart,
+            // DNS query time
+            lookupDomainTime: timing.domainLookupEnd - timing.domainLookupStart,
+            // TCP connection time
+            connectTime: timing.connectEnd - timing.connectStart,
+            // Time spent during the request
+            requestTime: timing.responseEnd - timing.requestStart,
+            // Request to completion of the DOM loading
+            initDomTreeTime: timing.domInteractive - timing.responseEnd,
+            // Load event time
+            loadEventTime: timing.loadEventEnd - timing.loadEventStart,
+            // Origin of the request
+            react: true,
+            //isIsomorphic flag
+            isIsomorphic: window.HR.isIsomorphic,
+            //old css loaded flag
+            loadedWithOldCss: window.HR.loadedWithOldCss,
+          }
+
+          if (('navigation' in window.performance) && ('getEntries' in window.performance)) {
+            obj.navigationType = window.performance.navigation.type;
+            obj.navigationRedirectCount = window.performance.navigation.redirectCount;
+            if (obj.fullLoadTime > 8000) {
+              try {
+                var entries = window.performance.getEntries();
+                if(entries[0].toJSON){
+                  obj.networkRequests = entries.map(function(e) {return e.toJSON();});
+                }
+              } catch (e) {
+                //do nothing
+              }
+            }
+          }
+
+          hr_metrics.app_track('page-load-metrics', obj);
+        }, 1000);
+      });
+    }
+  
+
+  $(window).on("load", function() {
+      var _pathname = document.location.pathname;
+      var cdn_url_switched = Cookies.get("cdn_url_switched");
+      if (cdn_url_switched !== '') {
+        Cookies.remove('cdn_url_switched');
+      }
+      hr_metrics.batch_track('PageLoad', _pathname + document.location.search, {
+          attribute1: _pathname,
+          attribute6: cdn_url_switched,
+          cdn_url: Cookies.get("cdn_url")
+      });
+
+      if (hr_metrics.track_dwell_time) {
+          hr_metrics.track_dwell_time(_pathname);
+          hr_metrics.set_navigation_data();
+      }
+
+      $(window).on('beforeunload', function(){
+
+          var _pathname = document.location.pathname;
+          hr_metrics.batch_track('PageClose', _pathname + document.location.search, {
+              attribute2: _pathname
+          });
+
+          hr_metrics.track_dwell_time(_pathname, true);
+
+          hr_metrics.batch_track_record(true);
+      });
+
+  });
+
+</script>
+
+<!-- Facebook SDK -->
+<!-- Twitter SDK -->
+
+<!-- track button clicks -->
+<script>
+    $(document).on('click', 'a, button, input, select, i, div, span, h5', null, function(e) {
+        var src = e.currentTarget, $src = $(e.currentTarget);
+        if ($src.attr('data-analytics')) {
+            action = 'Click'; data = $src.attr('data-analytics');
+        } else {
+            return;
+        }
+
+        
+          hr_metrics.batch_track(action, data, (function() {
+              var params={};
+              for (var _i=1; _i<=12; ++_i){
+                  var _attr = 'data-attr'+_i;
+                  if ($src.attr(_attr)){
+                    params['attribute'+_i] = $src.attr(_attr);
+                  }
+              }
+              var attributes = src.attributes, attr_length = src.attributes.length;
+              for (var i = 0; i < attr_length; i++){
+                var attribute = attributes[i];
+                if (attribute.name.indexOf('data-attr-') === 0){
+                  param_name = attribute.name.substr('data-attr-'.length);
+                  if (param_name.length > 0) {
+                    params[param_name] = attribute.value;
+                  }
+                }
+              }
+              return params;
+          })());
+        
+
+        
+          // google analytics
+          _gaq.push(['_trackEvent', 'Events' , action, data])
+        
+    });
+
+    $(document).on('AnalyticsEvent', function(e) {
+        action = e.event_type || false;
+        data = e.event_name || false;
+
+        if (!action || !data) {
+          return;
+        }
+
+        params = {}
+        params['attribute1'] = e.event_value || ""
+        params['attribute7'] = e.integer_event_value
+
+        if (window.HR && window.HR.current_page) {
+          params['attribute2'] = window.HR.current_page;
+        }
+
+        if (window.HR && window.HR.current_contest) {
+          params['attribute3'] = window.HR.current_contest.get('name');
+        }
+
+        
+            hr_metrics.batch_track(action, data, params);
+        
+
+        
+          // google analytics
+          _gaq.push(['_trackEvent', 'Events' , action, data]);
+        
+    });
+
+  </script>
+<!-- track button clicks end-->
+
+<!-- Linkedin Insights -->
+
+
+
+
+<div class="monaco-aria-container"><div class="monaco-alert" role="alert" aria-atomic="true" style="visibility: visible;">uniq, suggestion</div><div class="monaco-status" role="status" aria-atomic="true"></div></div></body></html>
